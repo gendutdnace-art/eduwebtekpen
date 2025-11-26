@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geografi | Pembelajaran Sains</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan font Inter secara default */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .active-nav {
+            background-color: #e0e7ff; /* indigo-100 */
+            color: #4f46e5; /* indigo-600 */
+            border-left: 4px solid #4f46e5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header & Navbar (Sama dengan Index.html untuk konsistensi) -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-indigo-700">
+                    EDUWEB Tekpen
+                </a>
+                <nav class="hidden md:flex space-x-4">
+                    <!-- Navigasi ke Beranda -->
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Beranda</a>
+                    <!-- Placeholder link ke Sejarah/Fiqh -->
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Baca Lainnya</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Visual</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Kuis</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama Halaman Geografi -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-6 border-b pb-2">Geografi: Ilmu Bumi & Antariksa</h1>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <!-- Sidebar Navigasi Konten -->
+            <aside class="md:w-1/4 bg-white p-4 rounded-xl shadow-lg h-fit sticky top-20">
+                <h2 class="text-lg font-bold text-indigo-700 mb-4">Materi Sains</h2>
+                <nav class="space-y-1">
+                    <!-- Navigasi Konten Baru -->
+                    <a href="#sains" class="nav-link block px-3 py-2 rounded-lg hover:bg-indigo-50 transition duration-150 ease-in-out active-nav">
+                        Apa itu Sains?
+                    </a>
+                    <a href="#cabang" class="nav-link block px-3 py-2 rounded-lg hover:bg-indigo-50 transition duration-150 ease-in-out text-gray-700">
+                        Cabang-cabang Ilmu Sains
+                    </a>
+                    <a href="#matahari" class="nav-link block px-3 py-2 rounded-lg hover:bg-indigo-50 transition duration-150 ease-in-out text-gray-700">
+                        Mengenal Matahari Lebih Dekat
+                    </a>
+                    <a href="#peran" class="nav-link block px-3 py-2 rounded-lg hover:bg-indigo-50 transition duration-150 ease-in-out text-gray-700">
+                        Peran Matahari dalam Kehidupan Manusia
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Area Konten Utama -->
+            <section class="md:w-3/4 space-y-12">
+                
+                <!-- 1. Apa itu Sains? -->
+                <article id="sains" class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-indigo-500">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Apa itu Sains?</h2>
+                    <p class="text-gray-600 mb-4">Sains (Ilmu Pengetahuan Alam) adalah studi tentang dunia fisik dan alam semesta melalui observasi dan eksperimen. Intinya, sains adalah cara kita memahami bagaimana alam bekerja, mulai dari hal-hal terkecil (seperti atom) hingga yang terbesar (seperti galaksi).</p>
+                    <p class="text-gray-600 mb-4">Geografi sering dianggap sebagai ilmu sosial dan alam, karena mempelajari interaksi antara manusia dan lingkungan Bumi.</p>
+                </article>
+
+                <!-- 2. Cabang-cabang Ilmu Sains -->
+                <article id="cabang" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Cabang-cabang Ilmu Sains</h2>
+                    <p class="text-gray-600 mb-4">Sains terbagi menjadi berbagai cabang utama, termasuk:</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
+                        <li>Fisika, adalah ilmu tentang gejala dan fenomena alam dan sifat benda-benda di sekitar kita termasuk tentang perpindahan dan energi. Beberapa cabang ilmu Fisika, misalnya Mekanika adalah ilmu tentang gerak benda; Elektronika ilmu tentang arus listrik dan magnet; dan Optika Geometris tentang alat-alat optik.</li>
+                        <li>Kimia, adalah ilmu tentang berbagai hal mengenai materi, yaitu terbuat dari apa, sifat dan perubahan dalam suatu reaksi kimia. Cabang ilmu Kimia antara lain, Farmasi yaitu ilmu tentang obatobatan; Radiokimia tentang zat-zat radioaktif; Kimia Organik tentang bahan-bahan kimia yang ada pada makhluk hidup; serta Kimia Anorganik tentang bahan kimia dalam benda-benda.</li>
+                        <li>Astronomi, adalah ilmu tentang planet, bintang dan alam semesta. Semua benda langit dipelajari dalam astronomi termasuk Matahari dan terjadinya gerhana, komet, dan asteroid. </li>
+                        <li>Ekologi, adalah ilmu tentang interaksi atau hubungan timbal balik balik antara makhluk hidup dengan lingkungan di sekitarnya. Bidang ilmu ini membahas tentang berbagai masalah lingkungan, misalnya polusi udara, tanah, dan air, serta efek perubahan iklim dan kepunahan hewan tertentu.</li>
+                        <li>geologi, adalah ilmu mengenai Bumi dan perubahannya. Beberapa cabang ilmu Geologi antara lain, Vulkanologi yaitu ilmu tentang gunung berapi; Seismologi yaitu ilmu tentang gempa bumi; serta Palentologi yaitu ilmu tentang fosil yang dapat membantu kita mengetahui umur suatu tempat dan kebudayaan zaman itu </li>
+                    </ul>
+                </article>
+
+                <!-- 3. Mengenal Matahari Lebih Dekat -->
+                <article id="matahari" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Mengenal Matahari Lebih Dekat</h2>
+                    <p class="text-gray-600 mb-4">Matahari adalah bintang di pusat Tata Surya kita. Diameter Matahari sekitar 109 kali diameter Bumi, dan massanya mencakup 99,8% dari total massa Tata Surya. [Image of the Sun] Matahari adalah bola plasma panas yang menyediakan energi utama untuk kehidupan di Bumi melalui proses fusi nuklir.</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
+                        <li> Karakteristik Matahari,  Matahari memegang peranan yang sangat penting. Tidak hanya sebagai bintang terdekat, Matahari juga menjadi benda langit paling terang dan paling besar di Tata Surya. Meski demikian, ternyata Matahari tergolong dalam bintang kuning kerdil dikarenakan ukurannya yang relatif lebih kecil dibandingkan bintang-bintang lain Tata Surya.
+                            <img src="IMG/IMG 1.png" alt="Gambar 1" width="300">
+                        </li>
+                    <p class="text-gray-600 mb-4">karakteristik Matahari yang dapat diamati dengan teleskop surya khusus dari Bumi adalah sebagai berikut.</p>
+                        <li>Bintik Matahari, yaitu cekungan di permukaan Matahari yang terlihat lebih gelap karena memiliki suhu beberapa ribu derajat lebih rendah dibandingkan suhu di sekitarnya. </li>
+                        <li>Suar Surya, yaitu ledakan atau semburan yang terjadi di atmosfer Matahari. Suar ini melepaskan sejumlah besar energi. Meski dalam jumlah energi yang kecil, cukup untuk menyebabkan gangguan pada alat komunikasi seluler, radio dan televisi di Bumi.  </li>
+                        <li>Prominensa Matahari,  yaitu bagian Matahari yang menyerupai lidah api di permukaannya, mulai dari lapisan fotosfer hingga korona.</li>
+                        <li>Angin Matahari, dibentuk oleh aliran partikel yang dipancarkan Matahari secara terus menerus</li>
+                    <p class="text-gray-600 mb-4"> Gerhana Matahari</p>
+                        <li>Gerhana Matahari total terjadi saat Matahari tertutup Bulan. </li>
+                        <li>Gerhana Matahari sebagian terjadi saat Bulan menutupi sebagian Matahari.</li>
+                        <li>Gerhana Matahari cincin terjadi saat Bulan yang menutupi Matahari berada pada titik terjauhnya dari Bumi.</li>
+                            <img src="IMG/IMG 2.png" width="450">
+                    </ul>
+                </article>
+
+                <!-- 4. Peran Matahari dalam Kehidupan Manusia -->
+                <article id="peran" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Peran Matahari dalam Kehidupan Manusia</h2>
+                    <p class="text-gray-600 mb-4">Peran Matahari sangat vital bagi kehidupan:</p>
+                    <ol class="list-decimal list-inside text-gray-600 space-y-2 ml-4">
+                    <p class="text-gray-600 mb-4">Tidak ada makhluk di muka Bumi yang tidak membutuhkan Matahari, bahkan makhluk yang hidup di lingkungan dingin sekalipun. Matahari memegang peranan sangat penting dalam kehidupan. </p>   
+                        <li>Energi Matahari dalam Bahan Bakar Fosil, Tumbuhan dan hewan yang mati ribuan tahun lalu dan terkubur di kerak Bumi dipanaskan terus menerus oleh Matahari. Kita menggunakan fosil ini untuk dijadikan bahan bakar kendaraan di masa ini. Tanpa peran Matahari, fosil tidak dapat kita manfaatkan pada hari ini.</li>
+                        <li>Kehangatan Matahari Untuk Kesehatan Tubuh, Berjemur dan mendapatkan sinar Matahari yang cukup seringkali menjadi resep hidup sehat. “Berjemur 5-15 menit di pagi hari dipercaya cukup untuk menyehatkan tubuh”</li>
+                        <li>Kehangatan Matahari Untuk Bumi, Sinar Matahari yang terus menerus diserap Bumi menjadikan Bumi terasa hangat. Suhu yang tepat membuat kehidupan di Bumi dapat terus berlangsung. Tumbuhan membutuhkan sinar Matahari untuk melakukan fotosintesis.</li>
+                        <li>Gravitasi Menjaga Bumi, Gaya gravitasi dengan kekuatan yang tepat turut berperan dalam menjaga kekokohan posisi Bumi saat ini. Tidak hanya Bumi, gravitasi Matahari ini juga sangat berpengaruh pada posisi planet-planet untuk tetap berada di orbitnya.</li>
+                        <li>Matahari, Hujan, Angin, Tanpa Matahari, rasanya mustahil terjadi hujan di Bumi. Hujan turun karena adanya penguapan air di lautan dan daratan yang disebabkan karena adanya panas Matahari. Uap air dikumpulkan di awan yang kemudian akan dibawa angin berkelana di langit, lalu turun sebagai air hujan yang membasahi tanah.</li>
+                    </ol>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            &copy; 2025 Portal Pembelajaran Interaktif. Hak Cipta Dilindungi.
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Menandai Navigasi Aktif -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mainContent = document.querySelector('main');
+
+            const setActiveLink = () => {
+                let currentHash = window.location.hash || '#sains'; // Default ke #sains
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav', 'text-gray-700');
+                    link.classList.add('text-gray-700');
+                    
+                    if (link.getAttribute('href') === currentHash) {
+                        link.classList.add('active-nav');
+                        link.classList.remove('text-gray-700');
+                    }
+                });
+            };
+
+            // Set link aktif saat halaman dimuat
+            setActiveLink();
+
+            // Set link aktif saat hash (tautan internal) berubah
+            window.addEventListener('hashchange', setActiveLink);
+
+            // Tambahkan event listener untuk scroll spy sederhana
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Perbarui URL hash tanpa memicu scroll
+                        history.replaceState(null, null, '#' + entry.target.id);
+                        setActiveLink();
+                    }
+                });
+            }, {
+                rootMargin: "0px 0px -70% 0px", // Menganggap aktif ketika 30% dari bagian atas terlihat
+                threshold: 0 // Setidaknya 1 pixel elemen terlihat
+            });
+
+            // Amati setiap bagian artikel
+            document.querySelectorAll('section article').forEach(article => {
+                observer.observe(article);
+            });
+        });
+    </script>
+</body>
+</html>

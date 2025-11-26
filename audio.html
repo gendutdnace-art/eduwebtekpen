@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual | Konten Audio Pembelajaran</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan font Inter secara default */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style untuk navigasi aktif */
+        .active-nav {
+            background-color: #ffe4e6; /* rose-100 */
+            color: #e11d48; /* rose-600 */
+            border-left: 4px solid #e11d48;
+        }
+        /* Memastikan audio controls terlihat jelas */
+        audio {
+            filter: sepia(20%) saturate(70%) grayscale(100%) opacity(0.8) contrast(100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header & Navbar (Konsisten) -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-indigo-700">
+                    EDUWEB Tekpen
+                </a>
+                <nav class="hidden md:flex space-x-4">
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Beranda</a>
+                    <a href="geografi.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Geografi</a>
+                    <a href="sejarah.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Sejarah</a>
+                    <a href="fiqh.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Fiqh</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Kuis</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama Halaman Audio -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-6 border-b pb-2">Visual: Konten Audio Pembelajaran</h1>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <!-- Sidebar Navigasi Konten -->
+            <aside class="md:w-1/4 bg-white p-4 rounded-xl shadow-lg h-fit sticky top-20">
+                <h2 class="text-lg font-bold text-rose-700 mb-4">Pilihan Audio</h2>
+                <nav class="space-y-1">
+                    <!-- Navigasi Konten Audio -->
+                    <a href="#sejarah-audio" class="nav-link block px-3 py-2 rounded-lg hover:bg-rose-50 transition duration-150 ease-in-out active-nav">
+                        Sejarah
+                    </a>
+                    <a href="#geografi-audio" class="nav-link block px-3 py-2 rounded-lg hover:bg-rose-50 transition duration-150 ease-in-out text-gray-700">
+                        Geografi
+                    </a>
+                    <a href="#fiqh-audio" class="nav-link block px-3 py-2 rounded-lg hover:bg-rose-50 transition duration-150 ease-in-out text-gray-700">
+                        Fiqh
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Area Konten Utama -->
+            <section class="md:w-3/4 space-y-12">
+                
+                <!-- 1. Audio Sejarah -->
+                <article id="sejarah-audio" class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-rose-500">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Audio Sejarah: Kisah Masa Awal Nusantara Hingga masa Majapahit</h2>
+                    <div class="w-full bg-gray-100 p-4 rounded-lg">
+                        <audio controls class="w-full">
+                            <!-- Ganti 'placeholder-sejarah.mp3' dengan tautan file audio Sejarah yang valid -->
+                            <source src="AUDIO/SEJARAH.mp3" type="audio/mp3">
+                            Browser Anda tidak mendukung elemen audio.
+                        </audio>
+                    </div>
+                </article>
+
+                <!-- 2. Audio Geografi -->
+                <article id="geografi-audio" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Audio Geografi: Hubungan Matahari dan Bumi beserta Dampaknya</h2>
+                    <div class="w-full bg-gray-100 p-4 rounded-lg">
+                        <audio controls class="w-full">
+                            <!-- Ganti 'placeholder-geografi.mp3' dengan tautan file audio Geografi yang valid -->
+                            <source src="AUDIO/GEOGRAFI.mp3" type="audio/mp3">
+                            Browser Anda tidak mendukung elemen audio.
+                        </audio>
+                    </div>
+                </article>
+
+                <!-- 3. Audio Fiqh -->
+                <article id="fiqh-audio" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Audio Fiqh: Bedah Singkat mengenai : Thaharah, Wudhu, Tayamum dan Mandi Wajib</h2>
+                    <div class="w-full bg-gray-100 p-4 rounded-lg">
+                        <audio controls class="w-full">
+                            <!-- Ganti 'placeholder-fiqh.mp3' dengan tautan file audio Fiqh yang valid -->
+                            <source src="AUDIO/FIQH.mp3" type="audio/mp3">
+                            Browser Anda tidak mendukung elemen audio.
+                        </audio>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            &copy; 2025 Portal Pembelajaran Interaktif. Hak Cipta Dilindungi.
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Menandai Navigasi Aktif (Scroll Spy) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const setActiveLink = () => {
+                // Default ke yang pertama jika tidak ada hash
+                let currentHash = window.location.hash || '#sejarah-audio'; 
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav', 'text-gray-700');
+                    if (link.getAttribute('href') === currentHash) {
+                        link.classList.add('active-nav');
+                    } else {
+                         link.classList.add('text-gray-700');
+                    }
+                });
+            };
+
+            setActiveLink();
+            window.addEventListener('hashchange', setActiveLink);
+
+            // Scroll Spy
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        history.replaceState(null, null, '#' + entry.target.id);
+                        setActiveLink();
+                    }
+                });
+            }, {
+                rootMargin: "0px 0px -70% 0px", // Menganggap aktif ketika 30% dari bagian atas terlihat
+                threshold: 0 
+            });
+
+            document.querySelectorAll('section article').forEach(article => {
+                observer.observe(article);
+            });
+        });
+    </script>
+</body>
+</html>
