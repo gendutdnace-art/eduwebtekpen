@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Video Interaktif Grid</title>
+    <!-- Muat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Gaya Kustom untuk Tema Terang dan Struktur Layout */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f7f7f7; /* Tema Terang */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Hindari scroll horizontal */
+        }
+        
+        /* Container Utama */
+        #main-layout {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 4rem; /* Sesuaikan dengan tinggi Header (h-16) */
+        }
+        
+        /* Gaya untuk Thumbnail Video di Grid */
+        .video-thumbnail {
+            /* Definisi ukuran dan tampilan thumbnail di grid */
+            width: 100%;
+            padding-bottom: 66.66%; /* Rasio aspek 3:2 (150/100 = 1.5) */
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            /* Garis Pengikat (Border) yang tebal dan jelas */
+            border: 4px solid #4f46e5; /* Border ungu yang mencolok (Gaya Awal) */
+        }
+        
+        /* Gaya Saat Kursor Diarahkan */
+        .video-thumbnail:hover:not(.video-active) {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.6);
+            border-color: #3b82f6; /* Warna border berubah saat hover */
+        }
+        
+        /* Gaya Video YANG SEDANG AKTIF DIPUTAR */
+        .video-active {
+            transform: scale(1.1); /* Membesar saat diklik/diputar */
+            z-index: 10; /* Pastikan video aktif berada di atas yang lain */
+            box-shadow: 0 10px 30px rgba(255, 69, 0, 0.7); /* Shadow merah/oranye untuk aktif */
+            border-color: #ff4500 !important; /* Border oranye/merah tebal */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER (Navigasi Atas) -->
+    <header class="fixed top-0 left-0 right-0 h-16 bg-white shadow-lg flex items-center justify-between px-6 z-50">
+        <h1 class="text-2xl font-extrabold text-indigo-700">Galeri Video</h1>
+        <nav class="hidden md:flex space-x-4">
+            <a href="index.html" class="text-gray-600 hover:text-indigo-600 font-medium">Halaman Utama</a>
+            <a href="#" class="text-gray-600 hover:text-indigo-600 font-medium">Tentang</a>
+        </nav>
+        <button id="menuToggle" class="md:hidden text-gray-600 hover:text-indigo-600 text-xl">
+            ☰
+        </button>
+    </header>
+
+    <!-- 2. MAIN LAYOUT (Sidebar + Konten Utama) -->
+    <div id="main-layout">
+        
+        <!-- 3. SIDEBAR (Navigasi Samping) -->
+        <aside id="sidebar" class="fixed top-16 left-0 w-64 h-full bg-gray-800 text-white p-4 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40">
+            <h3 class="text-lg font-semibold mb-4 text-indigo-400">Pilihan Menu</h3>
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="block p-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 font-medium transition">▶️ Galeri Video</a>
+                </li>
+                <li>
+                    <a href="index.html" class="block p-2 rounded-lg hover:bg-gray-700 transition">Beranda</a>
+                </li>
+                <li>
+                    <a href="fiqh.html" class="block p-2 rounded-lg hover:bg-gray-700 transition">Materi</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 4. KONTEN UTAMA -->
+        <main id="mainContent" class="flex-1 transition-all duration-300 ml-0 md:ml-64 p-8 relative">
+            
+            <!-- Judul Galeri (Langsung terlihat) -->
+            <h2 id="mainHeading" class="text-4xl font-bold text-gray-800 mb-8">Koleksi Video Pilihan Kami</h2>
+
+            <!-- App Container (Menampung Galeri) -->
+            <div id="app-container" class="relative w-full h-full min-h-[calc(100vh-8rem)]">
+
+                <!-- Container Galeri Video (Langsung terlihat) -->
+                <div id="galleryContainer" class="flex justify-center items-start w-full pt-4">
+                    <div id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-7xl h-auto">
+                        <!-- Thumbnail video akan di-inject di sini oleh JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Container Pesan/Notifikasi -->
+                <div id="messageBox" class="absolute top-4 left-1/2 transform -translate-x-1/2 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-md z-40 hidden" role="alert">
+                    <p id="messageText" class="font-medium"></p>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <script>
+        // Data Video & Audio (GANTI URL ini dengan URL file Anda)
+        const videoAssets = [
+            { id: 1, videoUrl: "video/1.mp4", thumbUrl: "thumbnail/1.jpg", audioUrl: "audioo/1.mp3", title: "Air Muttaghoiyyir" },
+            { id: 2, videoUrl: "video/2.mp4", thumbUrl: "thumbnail/2.jpg", audioUrl: "audioo/2.mp3", title: "Air Muttanajis" },
+            { id: 3, videoUrl: "video/3.mp4", thumbUrl: "thumbnail/3.jpg", audioUrl: "audioo/3.mp3", title: "Air Musyammas" },
+            { id: 4, videoUrl: "video/4.mp4", thumbUrl: "thumbnail/4.jpg", audioUrl: "audioo/4.mp3", title: "Air Mutlaq" },
+            { id: 5, videoUrl: "video/5.mp4", thumbUrl: "thumbnail/5.jpg", audioUrl: "audioo/5.mp3", title: "Air Musta'mal" },
+                
+        ];
+        
+
+        // titleButton dihapus
+        const galleryContainer = document.getElementById('galleryContainer');
+        const videoGrid = document.getElementById('videoGrid');
+        const messageBox = document.getElementById('messageBox');
+        const messageText = document.getElementById('messageText');
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const mainHeading = document.getElementById('mainHeading');
+        const appContainer = document.getElementById('app-container');
+
+        let videosVisible = true; // Selalu true karena konten langsung dimuat
+        let activeVideoId = null;
+        let isSidebarOpen = false;
+
+        // Fungsi untuk menampilkan pesan notifikasi
+        function showMessage(message) {
+            messageText.textContent = message;
+            messageBox.classList.remove('hidden');
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, 3000);
+        }
+
+        // --- Logika Render Awal (Membuat Thumbnail dengan Video/Audio) ---
+        videoAssets.forEach((data) => {
+            // 1. Buat elemen Container Video (sekarang menjadi thumbnail di grid)
+            const container = document.createElement('div');
+            container.id = `video-container-${data.id}`;
+            container.classList.add('video-thumbnail', 'group');
+
+            // 2. Buat elemen Image (Thumbnail)
+            const thumbnail = document.createElement('img');
+            thumbnail.src = data.thumbUrl;
+            thumbnail.alt = data.title;
+            thumbnail.classList.add('absolute', 'w-full', 'h-full', 'object-cover');
+            
+            // 3. Buat elemen Video (disembunyikan oleh thumbnail awalnya)
+            const videoElement = document.createElement('video');
+            videoElement.id = `video-player-${data.id}`;
+            videoElement.src = data.videoUrl;
+            videoElement.poster = data.thumbUrl; // Poster tetap diperlukan untuk awal
+            videoElement.classList.add('absolute', 'w-full', 'h-full', 'object-cover', 'hidden'); // Hidden initially
+            videoElement.muted = true; // WAJIB: agar dapat diputar otomatis
+            videoElement.loop = true;
+            videoElement.removeAttribute('controls'); // TIDAK memiliki kontrol pemutar
+
+            // 4. Buat elemen Audio
+            const audioElement = document.createElement('audio');
+            audioElement.id = `audio-player-${data.id}`;
+            audioElement.src = data.audioUrl;
+            audioElement.loop = true;
+
+            // 5. Overlay untuk ikon play
+            const overlay = document.createElement('div');
+            overlay.classList.add('absolute', 'inset-0', 'bg-black', 'bg-opacity-30', 'flex', 'items-center', 'justify-center', 'opacity-100', 'transition-opacity');
+            // Ikon Play SVG
+            overlay.innerHTML = '<svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+            overlay.id = `overlay-${data.id}`;
+
+            // 6. Judul di bagian bawah thumbnail
+            const title = document.createElement('div');
+            title.textContent = data.title;
+            title.classList.add('absolute', 'bottom-0', 'left-0', 'right-0', 'bg-gradient-to-t', 'from-black/70', 'to-transparent', 'text-white', 'p-2', 'text-sm', 'font-semibold', 'z-20');
+
+            container.appendChild(videoElement); // Video di bawah, ditutupi overlay/thumbnail
+            container.appendChild(thumbnail);
+            container.appendChild(overlay);
+            container.appendChild(title);
+            container.appendChild(audioElement);
+            videoGrid.appendChild(container);
+
+            // Atur event click untuk memulai pemutaran
+            container.addEventListener('click', () => startPlayback(data.id, container));
+        });
+
+
+        // --- Logika Interaksi Utama ---
+
+        // Fungsi untuk Menghentikan semua pemutaran dan mereset visual
+        function stopAllPlayback() {
+            if (activeVideoId !== null) {
+                // Hapus kelas aktif dari container yang terakhir dimainkan
+                const oldContainer = document.getElementById(`video-container-${activeVideoId}`);
+                if (oldContainer) {
+                    oldContainer.classList.remove('video-active');
+                    
+                    // Sembunyikan video dan tampilkan kembali thumbnail/overlay
+                    oldContainer.querySelector('video').classList.add('hidden');
+                    oldContainer.querySelector('img').classList.remove('hidden');
+                    oldContainer.querySelector(`#overlay-${activeVideoId}`).classList.remove('hidden');
+
+                    // Hentikan media
+                    oldContainer.querySelector('video').pause();
+                    oldContainer.querySelector('video').currentTime = 0;
+                    oldContainer.querySelector('audio').pause();
+                    oldContainer.querySelector('audio').currentTime = 0;
+                }
+                activeVideoId = null;
+            }
+        }
+        
+        // Fungsi untuk memulai pemutaran
+        function startPlayback(id, containerElement) {
+            // 1. Hentikan pemutaran yang sedang aktif
+            stopAllPlayback();
+            
+            // 2. Jika ID yang sama diklik lagi, keluar (sudah dihentikan di stopAllPlayback)
+            if (activeVideoId === id) return;
+
+            // 3. Temukan elemen media yang baru
+            const videoElement = containerElement.querySelector('video');
+            const audioElement = containerElement.querySelector('audio');
+            const thumbnailImage = containerElement.querySelector('img');
+            const overlay = containerElement.querySelector(`#overlay-${id}`);
+            
+            // 4. Reset visual elemen yang baru dan terapkan gaya aktif
+            containerElement.classList.add('video-active');
+            
+            // 5. Tampilkan video dan sembunyikan thumbnail/overlay
+            videoElement.classList.remove('hidden');
+            thumbnailImage.classList.add('hidden');
+            overlay.classList.add('hidden');
+
+            // 6. Putar media
+            videoElement.load();
+            videoElement.play().catch(e => {
+                console.error("Gagal memutar video:", e);
+                // Menampilkan pesan error jika autoplay diblokir
+                const data = videoAssets.find(v => v.id === id);
+                showMessage(`ERROR: Gagal memutar video "${data.title}". Mungkin browser memblokir putar otomatis.`);
+            });
+            
+            audioElement.load();
+            audioElement.play().catch(e => {
+                console.error("Gagal memutar audio:", e);
+            });
+            
+            activeVideoId = id;
+            showMessage(`Memutar Video: "${containerElement.querySelector('div:last-of-type').textContent}" (Diperbesar)`);
+        }
+
+
+        // Fungsi untuk mengaktifkan/menonaktifkan sidebar di mobile
+        function toggleSidebar() {
+            isSidebarOpen = !isSidebarOpen;
+            if (isSidebarOpen) {
+                sidebar.classList.remove('-translate-x-full');
+                menuToggle.textContent = '✕'; // Simbol close
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                menuToggle.textContent = '☰'; // Simbol menu
+            }
+        }
+        
+        // Event listener untuk tombol menu mobile
+        menuToggle.addEventListener('click', toggleSidebar);
+
+        // Pastikan audio/video direset jika laman meninggalkan fokus
+        window.addEventListener('beforeunload', stopAllPlayback);
+        window.addEventListener('blur', stopAllPlayback);
+        
+       
+    </script>
+
+</body>
+</html>

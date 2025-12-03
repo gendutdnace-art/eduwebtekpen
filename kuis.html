@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Kartu Pilihan Ganda 20 Soal</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .quiz-container {
+            min-height: 70vh;
+        }
+        /* Style untuk progress bar timer */
+        .timer-bar {
+            height: 8px;
+            background-color: #fca5a5; /* Red-300 */
+            transition: width 1s linear; 
+        }
+        /* Animasi berkedip untuk 5 detik terakhir */
+        .blinking {
+            animation: blink 0.5s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { background-color: #f87171; } /* Red-400 */
+            50% { background-color: #ef4444; } /* Red-500 */
+        }
+        .choice-button {
+            transition: all 0.2s;
+        }
+        .choice-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .correct {
+            background-color: #10b981 !important; /* Emerald-500 */
+            color: white !important;
+        }
+        .incorrect {
+            background-color: #ef4444 !important; /* Red-500 */
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Header & Navbar (Konsisten) -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-indigo-700">
+                    Belajar Pintar
+                </a>
+                <nav class="hidden md:flex space-x-4">
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Beranda</a>
+                    <a href="audio_visual.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Visual Audio</a>
+                    <a href="gambar_visual.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Visual Gambar</a>
+                    <a href="kuis.html" class="text-teal-600 font-bold border-b-2 border-teal-600 px-3 py-2 rounded-lg transition duration-150 ease-in-out">Kuis</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama Kuis -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div id="quiz-area" class="w-full max-w-2xl bg-white p-6 sm:p-8 rounded-xl shadow-2xl border-t-8 border-teal-500 quiz-container">
+            
+            <!-- Halaman Awal Kuis -->
+            <div id="start-screen" class="text-center">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-4">Uji Pemahaman Anda!</h1>
+                <p class="text-lg text-gray-600 mb-6">Kuis ini terdiri dari 20 pertanyaan pilihan ganda berbasis teks. Anda memiliki 10 detik untuk menjawab setiap pertanyaan. </p>
+                
+                <button id="start-quiz-button" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-xl font-bold rounded-lg shadow-lg text-white bg-teal-600 hover:bg-teal-700 transition duration-300 ease-in-out transform hover:scale-[1.02]">
+                    MULAI KUIS
+                </button>
+            </div>
+
+            <!-- Area Pertanyaan (Tersembunyi Awalnya) -->
+            <div id="question-screen" class="hidden">
+                <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                    <span id="q-counter" class="text-xl font-semibold text-teal-600">Pertanyaan 1/20</span>
+                    <div class="flex items-center space-x-2">
+                        <span id="q-timer-display" class="text-2xl font-bold text-gray-800">10s</span>
+                        <!-- Icon Jam -->
+                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                
+                <!-- Timer Bar -->
+                <div class="w-full rounded overflow-hidden mb-6">
+                    <div id="timer-bar" class="timer-bar w-full rounded" style="width:100%;"></div>
+                </div>
+
+                <!-- Teks pertanyaan -->
+                <p id="q-text" class="text-2xl font-semibold text-gray-900 mb-8 leading-relaxed">Pertanyaan akan muncul di sini.</p>
+
+                <!-- Pilihan Jawaban -->
+                <div id="choices-container" class="space-y-4">
+                    <!-- Tombol pilihan akan dimasukkan di sini oleh JS -->
+                </div>
+            </div>
+
+            <!-- Halaman Hasil Kuis (Tersembunyi Awalnya) -->
+            <div id="result-screen" class="hidden text-center">
+                <h2 class="text-4xl font-extrabold text-teal-600 mb-4">Kuis Selesai!</h2>
+                <div class="bg-teal-50 p-6 rounded-xl border border-teal-200 mb-8">
+                    <p class="text-2xl font-semibold text-gray-800">Jawaban Benar: <span id="correct-count" class="text-3xl text-teal-700"></span></p>
+                    <p class="text-2xl font-semibold text-gray-800 mt-2">Total Skor Anda: <span id="final-score" class="text-4xl font-extrabold text-teal-800"></span></p>
+                    <p class="text-sm text-gray-500 mt-3">Perhitungan: Jumlah Benar x 5</p>
+                </div>
+                
+                <a href="index.html" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in-out mr-4">
+                    Kembali ke Beranda
+                </a>
+                <button id="restart-quiz-button" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-lg shadow-sm text-teal-600 border border-teal-600 bg-white hover:bg-teal-50 transition duration-150 ease-in-out">
+                    Ulangi Kuis
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-auto py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            &copy; 2025 Portal Pembelajaran Interaktif.
+        </div>
+    </footer>
+
+    <!-- JavaScript Kuis Logika -->
+    <script>
+        // --- DATA KUIS ---
+        const QUIZ_QUESTIONS = [
+            // Pertanyaan sekarang HANYA berbasis teks
+            { q: "Thaharah berarti...", a: "bersuci dari hadas dan najis", choices: ["Membersihkan rumah", "bersuci dari hadas dan najis", "mandi setiap hari", "berwudhu saja"], subject: "Fuqg"},
+            { q: "Hadas kecil dapat disucikan dengan...", a: "Wudhu", choices: ["Mandi wajib", "Tayamum", "Wudhu", "Hanya doa"], subject: "Geografi"},
+            { q: "Contoh najis Mutawassithah adalah..", a: "Kencing bayi asi", choices: ["Air liur anjing", "Darah", "Kencing bayi asi", "Debu jalan"], subject: "Geografi"},
+            { q: "Rukun Wudhu yang pertama adalah....", a: "Niat", choices: ["Niat", "Mengusap kepala", "membasuh kaki", "Membasuh wajah"], subject: "Geografi"},
+            { q: "Sunnah Wudhu yang benar adalah", a: "Berkumur", choices: ["membasuh kaki", "berkumur", "Membaca tasyahud", "Mengusap kaki"], subject: "Sejarah"},
+            { q: "Tayamum dilakukan ketika...", a: "Tidak ada air", choices: ["Banyak air", "Tidak ada debu", "Tidak ada air", "Selesai makan"], subject: "Sejarah"},
+            { q: "Cara tayamum yang benar adalah mengusap...", a: "Wajah dan tangan", choices: ["Wajah dan tangan", "Kepala dan kaki", "leher dan telinga", "Wajah dan kaki"], subject: "Sejarah"},
+            { q: "Mandi Wajib dilakukan karena...", a: "Junub", choices: ["Lelah", "Junub", "Marah", "Ngantuk"], subject: "Sejarah"},
+            { q: "Shalat Fardhu Jumlahnya", a: "3",  choices: ["2", "3", "5", "7"], subject: "Fiqh"},
+            { q: "Jumlah rakaat shalat shubuh adalah...", a: "2", choices: ["1", "2", "3", "4"], subject: "Fiqh"},
+            { q: "Suci dari Hadas merupakan...", a: "Syarat sah shalat", choices: ["Sunnah", "Syarat sah shalat", "Makruh", "Rukun"], subject: "Fiqh"},
+            { q: "Rukun Shalat berikut adalah...", a: "Ruku", choices: ["Doa iftitah", "Membaca surat setelah al-fatihah", "rukuk", "Duduk istirahat"], subject: "Fiqh"},
+            { q: "Gerakan sujud dilakukan...", a: "2 kali", choices: ["1 kali", "2 kali", "3 kali", "Bebas"], subject: "Geografi"},
+            { q: "Membaca Al-fatihah adalah rukun...", a: "Shalat", choices: ["Mandi", "Wudhu", "Shalat", "Tayamum"], subject: "Sejarah"},
+            { q: "Shalat sunnah muakkad adalah...", a: "Rawatib", choices: ["Dhuha", "Hajat", "Rawatib", "Istikharah"], subject: "Fiqh"},
+            { q: "Shalat dhuha termasuk shalat....", a: "Sunnah ghairu muakkad", choices: ["Fardhu", "Sunnah ghairu muakkad", "Makruh", "Sunnah muakkad"], subject: "Sejarah"},
+            { q: "Air yang suci mensucikan namun makruh digunakan adalah?", a: "Air Musyammas", choices: ["Air Musta'mal", "Air Mutanajjis", "Air Suci", "Air Musyammas"], subject: "Fiqh"},
+            { q: "Shalat batal jika...", a: "Banyak bergerak", choices: ["Lupa rakaat", "Menangis", "Banyak bergerak", "Menggigil"], subject: "Geografi"},
+            { q: "Shalat tahiyyatul masjid dilakukan saat...", a: "Masuk masjid", choices: ["Hujan", "Masuk masjid", "Mau tidur", "Mau Makan"], subject: "Sejarah"},
+            { q: "Tayamum menggunakan apa sebagai pengganti air?", a: "Debu Suci", choices: ["Pasir", "Tanah Liat", "Kertas", "Debu Suci"], subject: "Fiqh"}
+        ];
+
+        // --- Variabel Global Kuis ---
+        const MAX_QUESTIONS = 20;
+        const ANSWER_TIME_LIMIT = 10; // Detik waktu menjawab
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0;
+        let timerInterval;
+        let isQuizActive = false;
+
+        // --- Elemen DOM ---
+        const startScreen = document.getElementById('start-screen');
+        const questionScreen = document.getElementById('question-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const startButton = document.getElementById('start-quiz-button');
+        const restartButton = document.getElementById('restart-quiz-button');
+        const qCounter = document.getElementById('q-counter');
+        const qText = document.getElementById('q-text');
+        const choicesContainer = document.getElementById('choices-container');
+        const timerBar = document.getElementById('timer-bar');
+        const qTimerDisplay = document.getElementById('q-timer-display');
+        const correctCountDisplay = document.getElementById('correct-count');
+        const finalScoreDisplay = document.getElementById('final-score');
+
+        // --- LOGIKA UTAMA KUIS ---
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            correctAnswers = 0;
+            isQuizActive = true;
+            
+            // Tampilkan layar pertanyaan
+            startScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+            questionScreen.classList.remove('hidden');
+
+            loadQuestion();
+        }
+        
+        function loadQuestion() {
+            if (!isQuizActive) return;
+
+            // Hentikan interval timer sebelumnya
+            clearInterval(timerInterval);
+
+            if (currentQuestionIndex >= MAX_QUESTIONS) {
+                showResults();
+                return;
+            }
+
+            const qData = QUIZ_QUESTIONS[currentQuestionIndex];
+            
+            // 1. Update counter & Teks 
+            qCounter.textContent = `Pertanyaan ${currentQuestionIndex + 1}/${MAX_QUESTIONS}`;
+            qText.textContent = qData.q; // Tampilkan teks pertanyaan
+
+            // 2. Render pilihan jawaban (aktif)
+            renderChoices(qData, false); 
+            
+            // 3. Reset tampilan timer dan mulai hitungan mundur
+            startAnswerPhase();
+        }
+
+        // Memulai Waktu Menjawab
+        function startAnswerPhase() {
+            let timeLeft = ANSWER_TIME_LIMIT;
+            
+            // Atur transisi bar timer (berjalan dari 100% ke 0%)
+            timerBar.style.transition = 'none'; // Reset transisi
+            timerBar.style.width = '100%'; 
+            setTimeout(() => {
+                timerBar.style.transition = `${ANSWER_TIME_LIMIT}s linear`;
+                timerBar.style.width = '0%'; 
+            }, 100); // Beri jeda singkat agar transisi reset berlaku
+
+            // Reset initial display
+            qTimerDisplay.textContent = `${ANSWER_TIME_LIMIT}s`;
+            timerBar.classList.remove('blinking');
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                
+                // Update tampilan waktu
+                qTimerDisplay.textContent = `${timeLeft}s`;
+                
+                // Visual Blinking (5 detik terakhir)
+                if (timeLeft <= 5 && timeLeft > 0) {
+                    timerBar.classList.add('blinking');
+                } else if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    
+                    // Nonaktifkan tombol dan tandai jawaban yang benar (Time Out = Jawaban Salah)
+                    const qData = QUIZ_QUESTIONS[currentQuestionIndex];
+                    document.querySelectorAll('.choice-button').forEach(btn => {
+                        btn.disabled = true;
+                        if (btn.textContent === qData.a) {
+                            btn.classList.add('correct');
+                        }
+                    });
+
+                    // Lanjut ke pertanyaan berikutnya
+                    setTimeout(() => {
+                        currentQuestionIndex++;
+                        loadQuestion();
+                    }, 1500);
+                }
+            }, 1000); // Interval 1 detik
+        }
+        
+        function renderChoices(qData, disabled) {
+            choicesContainer.innerHTML = '';
+            
+            // Acak pilihan jawaban
+            const shuffledChoices = [...qData.choices].sort(() => Math.random() - 0.5);
+
+            shuffledChoices.forEach(choice => {
+                const button = document.createElement('button');
+                button.textContent = choice;
+                button.disabled = disabled;
+                button.classList.add(
+                    'choice-button', 'w-full', 'px-4', 'py-3', 'text-left', 'bg-indigo-50', 'text-indigo-800', 
+                    'font-medium', 'rounded-lg', 'shadow-sm', 'hover:bg-indigo-200', 
+                    'transition', 'duration-150', 'ease-in-out', 'focus:outline-none', 'focus:ring-4', 'focus:ring-indigo-300'
+                );
+                
+                // Gunakan event listener untuk menangani jawaban
+                button.addEventListener('click', () => handleAnswer(button, choice, qData.a));
+                choicesContainer.appendChild(button);
+            });
+        }
+        
+        function handleAnswer(selectedButton, selectedChoice, correctAnswer) {
+            if (!isQuizActive) return;
+            
+            // Hentikan timer segera
+            clearInterval(timerInterval);
+            
+            const isCorrect = selectedChoice === correctAnswer;
+
+            // Nonaktifkan semua tombol pilihan dan beri feedback visual
+            document.querySelectorAll('.choice-button').forEach(btn => {
+                btn.disabled = true;
+                if (btn.textContent === correctAnswer) {
+                    btn.classList.add('correct'); 
+                } else if (btn === selectedButton && !isCorrect) {
+                    btn.classList.add('incorrect'); 
+                }
+            });
+
+            if (isCorrect) {
+                correctAnswers++;
+            }
+            
+            // Lanjut ke pertanyaan berikutnya setelah jeda singkat
+            setTimeout(() => {
+                currentQuestionIndex++;
+                loadQuestion();
+            }, 1500); // Jeda 1.5 detik
+        }
+
+        function showResults() {
+            isQuizActive = false;
+            
+            const finalScore = correctAnswers * 5;
+            
+            correctCountDisplay.textContent = correctAnswers;
+            finalScoreDisplay.textContent = finalScore;
+
+            questionScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+        }
+
+        // --- Event Listeners ---
+        startButton.addEventListener('click', startQuiz);
+        restartButton.addEventListener('click', startQuiz); 
+        
+        // Set tampilan awal timer bar
+        window.onload = () => {
+             timerBar.style.transition = '0s';
+             timerBar.style.width = '100%';
+        };
+    </script>
+</body>
+</html>

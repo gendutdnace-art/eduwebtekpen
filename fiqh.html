@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiqh | Thaharah (Bersuci)</title>
+    <!-- Memuat Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan font Inter secara default */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .active-nav {
+            background-color: #ccfbf1; /* teal-100 */
+            color: #0d9488; /* teal-600 */
+            border-left: 4px solid #0d9488;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Header & Navbar (Konsisten) -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-indigo-700">
+                    EDUWEB Tekpen
+                </a>
+                <nav class="hidden md:flex space-x-4">
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Beranda</a>
+                    <!-- <a href="geografi.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Geografi</a> -->
+                    <!-- <a href="sejarah.html" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Sejarah</a> -->
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Visual</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium px-3 py-2 rounded-lg transition duration-150 ease-in-out">Kuis</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama Halaman Fiqh -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-6 border-b pb-2">Fiqh: Bab Thaharah (Bersuci)</h1>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <!-- Sidebar Navigasi Konten -->
+            <aside class="md:w-1/4 bg-white p-4 rounded-xl shadow-lg h-fit sticky top-0">
+                <h2 class="text-lg font-bold text-teal-700 mb-4">Materi Bersuci</h2>
+                <nav class="space-y-1">
+                    <!-- 6 Navigasi Baru -->
+                    <a href="#pengertian-thaharah" class="nav-link block px-3 py-2 rounded-lg hover:bg-teal-50 transition duration-150 ease-in-out active-nav ">
+                        Pengertian Thaharah
+                    </a>
+                    <a href="#hadats" class="nav-link block px-3 py-2 rounded-lg hover:bg-teal-50 transition duration-150 ease-in-out text-gray-700">
+                        Hadats (Kecil & Besar)
+                    </a>
+                    <a href="#najis" class="nav-link block px-3 py-2 rounded-lg hover:bg-teal-50 transition duration-150 ease-in-out text-gray-700">
+                        Najis (Jenis-jenisnya)
+                    </a>
+                    <a href="#wudhu" class="nav-link block px-3 py-2 rounded-lg hover:bg-teal-50 transition duration-150 ease-in-out text-gray-700">
+                        Wudhu (Tata Cara)
+                    </a>
+                    <a href="#tayamum" class="nav-link block px-3 py-2 rounded-lg hover:bg-teal-50 transition duration-150 ease-in-out text-gray-700">
+                        Tayamum
+                    </a>
+                    <a href="#mandi-wajib" class="nav-link block px-3 py-2 rounded-lg hover:bg-teal-50 transition duration-150 ease-in-out text-gray-700">
+                        Mandi Wajib (Janabah)
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Area Konten Utama -->
+            <section class="md:w-3/4 space-y-12 ">
+                
+                <!-- 1. Pengertian Thaharah -->
+                <article id="pengertian-thaharah" class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-teal-500">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Pengertian Thaharah</h2>
+                    <p class="text-gray-600 mb-4">Thaharah, adalah bersuci, baik secara lahir (dari najis) maupun batin (dari hadas). secara istilah berarti menghilangkan hadas dan najis agar dapat melaksanakan ibadah seperti sholat. Dalam Islam, thaharah menjadi syarat sah ibadah seperti sholat, tawaf, i’tikaf, dan membaca Al- Qur’an.</p>
+                </article>
+
+                <!-- 2. Hadats -->
+                <article id="hadats" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Hadats (Kecil & Besar)</h2>
+                    <p class="text-gray-600 mb-4">Hadats adalah kondisi tidak suci yang melekat pada diri seseorang sehingga menghalanginya untuk beribadah. Hadats dibagi menjadi dua:</p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
+                        <li>Hadats Kecil, Hilang dengan berwudhu atau tayamum (contoh: buang angin, buang air kecil/besar).</li>
+                        <li>Hadats Besar, Hilang dengan mandi wajib atau tayamum (contoh: junub, haid, nifas).</li>
+                    </ul>
+                </article>
+
+                <!-- 3. Najis -->
+                <article id="najis" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Najis (Jenis-jenisnya)</h2>
+                    <p class="text-gray-600 mb-4">Najis adalah kotoran yang menurut syariat Islam harus dibersihkan karena menghalangi keabsahan ibadah. Najis terbagi menjadi tiga tingkatan:</p>
+                    <ol class="list-decimal list-inside text-gray-600 space-y-2 ml-4">
+                        <li>Najis Mukhaffafah (Ringan), Contohnya air kencing bayi laki-laki yang belum makan apa-apa selain ASI. Cara membersihkannya cukup diperciki air.</li>
+                        <li>Najis Mutawassithah (Sedang), Contohnya kotoran hewan, darah, muntah. Dibersihkan dengan mencuci sampai hilang zat, rasa, warna, dan baunya.</li>
+                        <li>Najis Mughallazhah (Berat), Contohnya jilatan anjing atau babi. Dibersihkan dengan mencuci tujuh kali, salah satunya dengan tanah/debu.</li>
+                    </ol>
+                </article>
+
+                <!-- 4. Wudhu -->
+                <article id="wudhu" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Wudhu (Tata Cara)</h2>
+                    <p class="text-gray-600 mb-4">Wudhu adalah cara bersuci dari Hadats Kecil dengan menggunakan air. Rukun Wudhu yang harus dipenuhi meliputi, Niat, Membasuh Wajah, Membasuh Tangan Sampai Siku, Mengusap Sebagian Kepala, Membasuh Kaki sampai Mata kaki, tertib, semua ini dilakukan secara 3x secara beurutan. </p>
+                    <p class="text-gray-600 mb-4">Adapun Sunnah Wudhu yakni Membaca basmallah, mencuci kedua telapak tangan, berkumur, menghirup air ke hidung (istinsyaq), Mengusap telinga, membasuh anggota wudhu tiga kali, mendahulukan kanan dahulu, mengahdap kiblat, berdoa swtwlah wudhu</p>
+                    <p class="text-gray-600 mb-4">Adapun, hal-hal yang membatalkan wudhu yakni, Keluar sesuatu dari dubur/qubul, tidur nyenyak (hilang kesadaran), Hilang akal (mabuk, pingsan), Bersentuhan dengan bukan mahramnya, Menyentuh kemaluan tanpa penghalang</p>
+                </article>
+                
+                <!-- 5. Tayamum -->
+                <article id="tayamum" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Tayamum</h2>
+                    <p class="text-gray-600 mb-4">Tayamum adalah pengganti wudhu atau mandi wajib menggunakan debu atau tanah suci. Tayamum dilakukan hanya jika tidak ada air atau jika ada halangan untuk menggunakan air (misalnya sakit). Tayamum hanya meliputi, Niat, Menepukkan dua tangan ke debu, Mengusap Wajah, Meneppukan lagi dua tangan, Mengusap kedua tangan sampai pergelangan. </p>
+                    <p class="text-gray-600 mb-4"> Adapun Syarat untuk Tayamum yakni, Tidak ada ketersedian air, Rukhsoh karena sakit yang tidak diperkenankan terkena air, Menggunakan debu suci, telah masuk waktu shalat. </p>
+                </article>
+
+                <!-- 6. Mandi Wajib -->
+                <article id="mandi-wajib" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Mandi Wajib (Janabah)</h2>
+                    <p class="text-gray-600 mb-4">Mandi Wajib atau Mandi Junub/Janabah, diakukan karena, Junub (Keluar Mani, atau berhubungan suami istri), Haid, Nifas, Melahirkan, Meninggal Dunia</p>
+                    <p class="text-gray-600 mb-4">Dalam pelaksanaannya Rukun Mandi Wajib adalah Niat, Menhilangkan Najis, Meratakan Air ke seluruh Tubuh tanpa terkecuali</p>
+                        <ol class="list-decimal list-inside text-gray-600 space-y-2 ml-4">
+                             <li>Dengan Niat “Nawaitu Ghusla liraf’il hadatsil akbari fardhon lillahi ta’ala</li>
+                             <li>Membasuh Kedua tangan</li>
+                             <li>embersihkan Kemaluan dengan tangan kiri dan menggosokan tangan pada tanah atau sejenisnya Kecuali Sabun</li>
+                             <li>Berwudhu seperti berwudhu shalat</li>
+                            <li>Kemudian menuangkan air ke atas kepala dengan memakai wangi-wangian, memasukkan jari-jari tangan pada pokok (pangkal) rambut menggosok-gosoknya, meratakan seluruh badan dimulai dari sisi kanan kemudian sisi kiri dengan digosok, dan menuangkan air sampai merata tiga kali.</li>
+                            <li>Melepaskan ikatan rambut atau cukup menyiramnya.</li>
+                             <li>Membasuh kedua kaki masing-masing tiga kali dengan mendahulukan kaki kanan.</li>
+                             <li>Tidak berlebih-lebihan dalam menggunakan air</li>
+                         </ol>
+                </article>
+
+                <!-- 6. Mandi Wajib -->
+                <article id="mandi-wajib" class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Mandi Wajib (Janabah)</h2>
+                    <p class="text-gray-600 mb-4">Tidak semua air bisa untuk bersuci. Air yang bisa di pakai untuk bersuci disebut Air Mutlak. Macam-macamnya adalah</p>
+                      <ol class="list-decimal list-inside text-gray-600 space-y-2 ml-4">
+                        <li>Air Laut</li>
+                        <li>Air Sumur</li>
+                        <li>Air Hujan</li>
+                        <li>Air Sungai</li>
+                        <li>Air Embun</li>
+                        <li>Mata Air</li>
+                    </ol>
+                    <p class="text-gray-600 mb-4"></p>
+                    <p class="text-gray-600 mb-4">Selain Air Mutlak ada 2 jenis lagi yakni Air Musta’mal dan Air Musyammas</p>
+                        <ol class="list-decimal list-inside text-gray-600 space-y-2 ml-4">
+                        <li>Air musta’mal merupakan air sisa bersuci, baik berwudhu atau mandi yang menetes dari tubuh seseorang yang mana tidak lagi bisa digunakan untuk bersuci.Namun, apabila tetesan tersebut jatuh pada air dengan volume lebih dari dua qullah maka air dalam wadah masih bisa digunakan untuk berwudhu. Sedangkan jika air menetes di dalam air dengan volume kurang dari dua qullah, maka air tersebut tidak bisa digunakan untuk bersuci.</li>
+                        <li>Air musyammas adalah jenis air yang makruh apabila digunakan untuk berwudhu, dikarenakan dikhawatirkan lebih banyak mudharatnya bagi muslim. Air ini merupakan air yang dipanaskan di bawah sinar matahari, tidak di negara-negara bercuaca panas ekstrim. Dipanaskan dengan wadah terbuat dari logam yang bukan emas maupun perak. Biasanya wadah yang digunakan adalah bejana yang terbuat dari tembaga atau besi yang mana merupakan isolator, kemudian lebih mudah berkarat sehingga ditakutkan dapat membuat hal-hal buruk apabila tetap digunakan, salah satunya kusta</li>
+  
+                    </ol>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            &copy; 2025 Portal Pembelajaran Interaktif. Hak Cipta Dilindungi.
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Menandai Navigasi Aktif (Scroll Spy) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const setActiveLink = () => {
+                let currentHash = window.location.hash || '#pengertian-thaharah'; // Default ke yang pertama
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav', 'text-gray-700');
+                    if (link.getAttribute('href') === currentHash) {
+                        link.classList.add('active-nav');
+                    } else {
+                         link.classList.add('text-gray-700');
+                    }
+                });
+            };
+
+            // Set link aktif saat halaman dimuat
+            setActiveLink();
+
+            // Set link aktif saat hash (tautan internal) berubah
+            window.addEventListener('hashchange', setActiveLink);
+
+            // Tambahkan event listener untuk scroll spy sederhana
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Perbarui URL hash tanpa memicu scroll
+                        history.replaceState(null, null, '#' + entry.target.id);
+                        setActiveLink();
+                    }
+                });
+            }, {
+                rootMargin: "0px 0px -70% 0px", // Menganggap aktif ketika 30% dari bagian atas terlihat
+                threshold: 0 // Setidaknya 1 pixel elemen terlihat
+            });
+
+            // Amati setiap bagian artikel
+            document.querySelectorAll('section article').forEach(article => {
+                observer.observe(article);
+            });
+        });
+    </script>
+</body>
+</html>
